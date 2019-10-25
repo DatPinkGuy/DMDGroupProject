@@ -349,6 +349,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 457349919}
   - {fileID: 1984421388}
+  camera: {fileID: 963194227}
 --- !u!4 &713513688
 Transform:
   m_ObjectHideFlags: 0
