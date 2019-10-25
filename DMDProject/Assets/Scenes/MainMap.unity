@@ -152,8 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelInfo: {fileID: 11400000, guid: 05bf29957f862ff4da1dbfae7091af6e, type: 2}
-  levelNumb: 0
+  levelNumb: 1
 --- !u!135 &457349921
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -347,7 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e474bef078e403d438c9f90aa674fd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2082728331}
+  nodes:
+  - {fileID: 457349919}
+  - {fileID: 1984421388}
 --- !u!4 &713513688
 Transform:
   m_ObjectHideFlags: 0
@@ -477,8 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelInfo: {fileID: 11400000, guid: 53abc7ca97afc104aa53669838ed43f5, type: 2}
-  levelNumb: 0
+  levelNumb: 2
 --- !u!135 &1984421390
 SphereCollider:
   m_ObjectHideFlags: 0
