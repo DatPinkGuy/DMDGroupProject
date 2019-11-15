@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -23,21 +26,37 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckForNodes();
+        CheckDistance();
+    }
+
+    private void CheckForNodes()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out _hit, 50))
             {
                 foreach (var node in nodes)
                 {
-                    if (_hit.transform == node.transform)
-                    {
-                        Agent.destination = _hit.transform.position;
-                        _chosenNode = node;
-                        SceneManager.LoadScene(LevelInfo.levelNumb);
-                        break;
-                    }
+                    if (_hit.transform != node.transform) continue;
+                    Agent.destination = _hit.transform.position;
+                    _chosenNode = node;
+                    break;
                 }
             }
         }
+    }
+    
+    private void CheckDistance()
+    {
+        if (!_chosenNode) return;
+        StartCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        if (Agent.hasPath) yield break;
+        yield return new WaitForSecondsRealtime(2);
+        SceneManager.LoadScene(LevelInfo.levelNumb);
     }
 }
