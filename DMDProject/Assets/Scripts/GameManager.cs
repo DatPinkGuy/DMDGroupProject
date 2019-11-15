@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Wait()
     {
+        yield return new WaitForSeconds(1f);
         if (Agent.hasPath) yield break;
         yield return new WaitForSecondsRealtime(2);
         SceneManager.LoadScene(LevelInfo.levelNumb);
