@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AI;
+
 
 public class GameManager : MonoBehaviour
 {
     private RaycastHit _hit;
+    private GameObject _chosenNode;
+    [SerializeField] private GameObject agent;
     [SerializeField] private List<GameObject> nodes;
     [SerializeField] private new Camera camera;
-    private GameObject _chosenNode;
+    private NavMeshAgent Agent => agent.GetComponent<NavMeshAgent>(); 
     private LoadLevelInfo LevelInfo => _chosenNode.GetComponent<LoadLevelInfo>();
-    
-
     // Start is called before the first frame update
     void Start()
     {
-    
+        
     }
 
     // Update is called once per frame
@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
                 {
                     if (_hit.transform == node.transform)
                     {
+                        Agent.destination = _hit.transform.position;
                         _chosenNode = node;
                         SceneManager.LoadScene(LevelInfo.levelNumb);
+                        break;
                     }
                 }
             }
