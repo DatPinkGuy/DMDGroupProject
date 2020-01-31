@@ -99,11 +99,20 @@ public class QManager : MonoBehaviour
         //apply questions to UI
         for (int i = 0; i < questionNum; i++)
         {
-            Debug.Log("Questions Applied");
-            //apply current question to UI
-            questionUI.text = questionnaire.questions[i].question;
-            // randomly assign the answers to the buttons
-            AssignQuestions();
+            //if no questions remaining
+            if (questionNum >= 4)
+            {
+                //TODO: Deactivate all UI and display if player wins or not then move to biome scene
+                Debug.Log("No Questions Remaining");
+            }
+            else
+            {
+                Debug.Log("Questions Applied");
+                //apply current question to UI
+                questionUI.text = questionnaire.questions[i].question;
+                // randomly assign the answers to the buttons
+                AssignQuestions();
+            }
 
         }
     }
