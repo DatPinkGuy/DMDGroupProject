@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 231844923}
   - component: {fileID: 231844922}
   - component: {fileID: 231844921}
+  - component: {fileID: 231844924}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: Untagged
@@ -304,6 +305,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231844919}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &231844924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231844919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumb: 6
 --- !u!1 &329865906
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +523,7 @@ GameObject:
   - component: {fileID: 519815621}
   - component: {fileID: 519815620}
   - component: {fileID: 519815619}
+  - component: {fileID: 519815622}
   m_Layer: 0
   m_Name: Sphere (4)
   m_TagString: Untagged
@@ -589,6 +604,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519815617}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &519815622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519815617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumb: 4
 --- !u!1 &553490244
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +629,7 @@ GameObject:
   - component: {fileID: 553490248}
   - component: {fileID: 553490247}
   - component: {fileID: 553490246}
+  - component: {fileID: 553490249}
   m_Layer: 0
   m_Name: Sphere (5)
   m_TagString: Untagged
@@ -681,6 +710,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553490244}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &553490249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553490244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumb: 3
 --- !u!1 &555472009
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.4685974, y: 148.63596}
+  m_AnchoredPosition: {x: 4.468628, y: 148.63596}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555472011
@@ -1505,7 +1547,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 18.77
   m_Depth: 0
   m_CullingMask:
@@ -1924,6 +1966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1050691271}
+  - component: {fileID: 1050691270}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -1931,6 +1974,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1050691270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050691269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c0977b64bfbfa4086d11fee445b02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1050691271
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,8 +2025,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150548762}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.005, z: 0}
+  m_LocalScale: {x: 0.013899045, y: 0.013899045, z: 0.013899045}
   m_Children: []
   m_Father: {fileID: 1622720183}
   m_RootOrder: 0
@@ -2014,7 +2069,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e763925cd8f996a4399383e835e9e36c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2130,7 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a31b1b078427c74baecb9fba0da9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumb: 3
+  levelNumb: 5
 --- !u!1 &1214072716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +2291,7 @@ GameObject:
   - component: {fileID: 1221116733}
   - component: {fileID: 1221116732}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3109,13 +3164,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1050691270}
+        m_MethodName: sceneSwitch
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
