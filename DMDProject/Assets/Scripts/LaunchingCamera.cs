@@ -17,6 +17,8 @@ public class LaunchingCamera : MonoBehaviour
     public bool _gotDirection;
     public bool _playState;
     private float AngleInDeg => Mathf.Atan2(_startPoint.y - _endPoint.y, _startPoint.x - _endPoint.x) * (180 / Mathf.PI);
+    private Ray _ray;
+    private RaycastHit _hit;
     [SerializeField] private GameObject animalLaunching;
     [SerializeField] private new Camera camera;
     // Start is called before the first frame update
@@ -69,10 +71,15 @@ public class LaunchingCamera : MonoBehaviour
     {
         if (!_gotDirection)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0)) _startPoint = camera.ScreenToViewportPoint(Input.mousePosition);
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                _ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(_ray, out _hit)) _startPoint = _hit.point;
+            }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                _endPoint = camera.ScreenToViewportPoint(Input.mousePosition);
+                _ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(_ray, out _hit)) _endPoint = _hit.point;
                 _launchDirection = GetDirection(_startPoint, _endPoint);
                 return;
             }
