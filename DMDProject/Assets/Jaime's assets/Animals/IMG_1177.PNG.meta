@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: e0a95db41575c4b419118879d9098be1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7604367102872968927
+    second: IMG_1177_0
+  - first:
+      213: 4565627410095368092
+    second: IMG_1177_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,17 +46,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 500, z: 0, w: 245}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -84,11 +90,57 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: IMG_1177_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 521
+        width: 1038
+        height: 1137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0255ba309ca1f784f88997fcb17178c3
+      internalID: -7604367102872968927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IMG_1177_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 521
+        width: 1038
+        height: 1137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d58a117ff5956f941ba94bcf740ca57c
+      internalID: 4565627410095368092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -516, y: -475}
+      - {x: -527, y: 726}
+      - {x: 529, y: 738}
+      - {x: 522, y: -462}
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
