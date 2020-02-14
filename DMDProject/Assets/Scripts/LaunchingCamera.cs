@@ -9,7 +9,7 @@ public class LaunchingCamera : MonoBehaviour
     public float gravityModifier;
     public float maxPower;
     public float powerMeterSpeed;
-    public float _launchPower;
+    private float _launchPower;
     private Vector3 _startPoint;
     private Vector3 _endPoint;
     private Vector3 _launchDirection;
@@ -19,10 +19,16 @@ public class LaunchingCamera : MonoBehaviour
     private bool _playState;
     private Ray _ray;
     private RaycastHit _hit;
-    //
+    //Power bar bools for repeating the filling
     private bool _powerBarTop;
     private bool _powerBarBottom;
     //
+    private Vector3 _oldPosition;
+    private Vector3 AnimalPosition
+    {
+        get => animalLaunching.transform.position;
+        set => animalLaunching.transform.position = value;
+    }
     [SerializeField] private GameObject animalLaunching;
     [SerializeField] private new Camera camera;
     [SerializeField] private Image powerBarImage;
@@ -62,16 +68,32 @@ public class LaunchingCamera : MonoBehaviour
 
     private Vector3 Launched()
     {
-        Vector3 transformPosition = animalLaunching.transform.position;
-        Rb.AddForce(0, -gravityModifier,0); // worked better than transform.position modification
-        CameraFollow();
-        if (transformPosition.y < 0) _playState = true;
-        return transformPosition;
+        if (_oldPosition != AnimalPosition)
+        {
+            var direction = AnimalPosition - _oldPosition;
+            float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
+            Vector3 transformPosition = AnimalPosition;
+            Rb.AddForce(0, -gravityModifier,0); 
+            CameraFollow();
+            animalLaunching.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            _oldPosition = AnimalPosition; 
+            if (transformPosition.y < 0) _playState = true;
+            return transformPosition;
+        }
+        else
+        {
+            _oldPosition = AnimalPosition;
+            Vector3 transformPosition = AnimalPosition;
+            Rb.AddForce(0, -gravityModifier,0);
+            CameraFollow();
+            if (transformPosition.y < 0) _playState = true;
+            return transformPosition;
+        }
     }
 
     private void CameraFollow()
     {
-        camera.transform.position = new Vector3(animalLaunching.transform.position.x, animalLaunching.transform.position.y, -5);; //needs z axis offset
+        camera.transform.position = new Vector3(AnimalPosition.x, AnimalPosition.y, -5);; //needs z axis offset
     }
 
     private void MiniGame()
@@ -131,7 +153,7 @@ public class LaunchingCamera : MonoBehaviour
         }
         if (_launched)
         {
-            animalLaunching.transform.position = Launched();
+            AnimalPosition = Launched();
         }
     }
 }
