@@ -13,10 +13,9 @@ public class LaunchingCamera : MonoBehaviour
     private Vector3 _endPoint;
     private Vector3 _launchDirection;
     private Rigidbody Rb => animalLaunching.GetComponent<Rigidbody>();
-    public bool _launched;
-    public bool _gotDirection;
-    public bool _playState;
-    private float AngleInDeg => Mathf.Atan2(_startPoint.y - _endPoint.y, _startPoint.x - _endPoint.x) * (180 / Mathf.PI);
+    private bool _launched;
+    private bool _gotDirection;
+    private bool _playState;
     private Ray _ray;
     private RaycastHit _hit;
     [SerializeField] private GameObject animalLaunching;
@@ -47,7 +46,6 @@ public class LaunchingCamera : MonoBehaviour
     private Vector3 GetDirection(Vector3 startPoint, Vector3 endPoint)
     {
         Vector3 launchDirection = endPoint + startPoint;
-        float angle = AngleInDeg;
         launchDirection.z = animalLaunching.transform.position.z;
         _gotDirection = true;
         return launchDirection;
