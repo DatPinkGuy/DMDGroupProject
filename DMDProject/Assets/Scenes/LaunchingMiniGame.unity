@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3636bed873d5247bff224d021ed464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceModifier: 5
+  forceModifier: 20
   gravityModifier: 0.35
   maxPower: 2
   powerMeterSpeed: 0.5

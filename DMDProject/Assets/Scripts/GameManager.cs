@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private new Camera camera;
     private NavMeshAgent Agent => agent.GetComponent<NavMeshAgent>(); 
     private LoadLevelInfo LevelInfo => _chosenNode.GetComponent<LoadLevelInfo>();
+    private NavMeshHit _navMeshHit;
     // Start is called before the first frame update
     void Start()
     {

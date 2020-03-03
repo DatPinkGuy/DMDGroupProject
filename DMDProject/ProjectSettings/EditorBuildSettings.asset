@@ -29,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LaunchingMiniGame.unity
     guid: faec99cd369ecd34586c171083d5f3ee
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Mini game selection.unity
     guid: b47eae883b4e44d4a9aa91fc50be387b
