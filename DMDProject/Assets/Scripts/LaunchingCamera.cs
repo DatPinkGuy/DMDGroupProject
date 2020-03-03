@@ -14,9 +14,9 @@ public class LaunchingCamera : MonoBehaviour
     private Vector3 _endPoint;
     private Vector3 _launchDirection;
     private Rigidbody Rb => animalLaunching.GetComponent<Rigidbody>();
-    private bool _launched;
+    [HideInInspector] public bool launched;
     private bool _gotDirection;
-    private bool _playState;
+    [HideInInspector] public bool playState;
     private Ray _ray;
     private RaycastHit _hit;
     //Power bar bools for repeating the filling
@@ -41,7 +41,7 @@ public class LaunchingCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playState)
+        if (playState)
         {
             Rb.isKinematic = true;
             return;
@@ -52,7 +52,7 @@ public class LaunchingCamera : MonoBehaviour
     private void LaunchObject(float power)
     {
         Rb.AddForce(power*forceModifier*_launchDirection);
-        _launched = true;
+        launched = true;
         powerBarImage.enabled = false;
     }
 
@@ -77,7 +77,7 @@ public class LaunchingCamera : MonoBehaviour
             CameraFollow();
             animalLaunching.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             _oldPosition = AnimalPosition; 
-            if (transformPosition.y < 0) _playState = true;
+            if (transformPosition.y < 0) playState = true;
             return transformPosition;
         }
         else
@@ -86,7 +86,7 @@ public class LaunchingCamera : MonoBehaviour
             Vector3 transformPosition = AnimalPosition;
             Rb.AddForce(0, -gravityModifier,0);
             CameraFollow();
-            if (transformPosition.y < 0) _playState = true;
+            if (transformPosition.y < 0) playState = true;
             return transformPosition;
         }
     }
@@ -113,7 +113,7 @@ public class LaunchingCamera : MonoBehaviour
                 return;
             }
         }
-        if (!_launched && _gotDirection)
+        if (!launched && _gotDirection)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0)) _launchPower = 0;
             if (Input.GetKey(KeyCode.Mouse0))
@@ -151,7 +151,7 @@ public class LaunchingCamera : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Mouse0)) LaunchObject(_launchPower);
         }
-        if (_launched)
+        if (launched)
         {
             AnimalPosition = Launched();
         }
