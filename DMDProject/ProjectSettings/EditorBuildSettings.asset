@@ -29,7 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LaunchingMiniGame.unity
     guid: faec99cd369ecd34586c171083d5f3ee
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Mini game selection.unity
+    guid: b47eae883b4e44d4a9aa91fc50be387b
   - enabled: 1
     path: Assets/Scenes/animal info.unity
-    guid: f48f26247e9fdb849bf27fa58ef35436
+    guid: 76d2f1f1ced9cc140922a14d38ffe408
   m_configObjects: {}
