@@ -8,11 +8,11 @@ public class QManager : MonoBehaviour
 {
     [SerializeField] GameObject bossHealthBar;
     [SerializeField] GameObject answerPopUp;
+    [SerializeField] GameObject winLossPopUp;
 
     [SerializeField] QScriptable questionnaire;
-    [SerializeField] TextMeshProUGUI questionUI;
-    [SerializeField] Text q1, q2, q3, q4;
-    private List<string> randomAssignQuestions = new List<string>(4);
+    [SerializeField] TextMeshProUGUI questionUI, q1, q2, q3, q4;
+    private List<string> randomAssignQuestions = new List<string>();
     private int questionNum = 1;
 
 
@@ -79,8 +79,17 @@ public class QManager : MonoBehaviour
         answerPopUp.GetComponent<QAnswerPopUp>().StartCorrect();
 
         //move onto next question
-        questionNum++;
-        DisplayQuestion();
+        if (questionNum < questionnaire.questions.Count)
+        {
+            questionNum++;
+            DisplayQuestion();
+        }
+        else
+        {
+            //End Game
+            Debug.Log("Ending Game");
+            EndGame();
+        }
     }
 
     void DisplayFail()
@@ -90,8 +99,17 @@ public class QManager : MonoBehaviour
         answerPopUp.GetComponent<QAnswerPopUp>().StartWrong();
 
         //move onto next question
-        questionNum++;
-        DisplayQuestion();
+        if (questionNum < questionnaire.questions.Count)
+        {
+            questionNum++;
+            DisplayQuestion();
+        }
+        else
+        {
+            //End Game
+            Debug.Log("Ending Game");
+            EndGame();
+        }
     }
 
     void DisplayQuestion()
@@ -100,7 +118,7 @@ public class QManager : MonoBehaviour
         for (int i = 0; i < questionNum; i++)
         {
             //if no questions remaining
-            if (questionNum >= 4)
+            if (questionNum >= questionnaire.questions.Count)
             {
                 //TODO: Deactivate all UI and display if player wins or not then move to biome scene
                 Debug.Log("No Questions Remaining");
@@ -166,4 +184,21 @@ public class QManager : MonoBehaviour
             randomAssignQuestions.Add(questionnaire.questions[questionNum - 1].answer);
         }
     }
+
+    void EndGame()
+    {
+        //Pop up win loss menu
+        winLossPopUp.SetActive(true);
+        //inform player if they won or lost
+        if (bossHealthBar.GetComponent<QHealthBar>().health <= 50)
+        {
+            //Display Win
+            winLossPopUp.GetComponentInChildren<TextMeshProUGUI>().text = "You Win!";
+        }
+        else
+        {
+            //Display Loss
+            winLossPopUp.GetComponentInChildren<TextMeshProUGUI>().text = "You Lose!";
+        }
+    } 
 }

@@ -17,14 +17,29 @@ MonoBehaviour:
     wrongAnswerOne: Fish
     wrongAnswerTwo: Summer
     wrongAnswerThree: Swimming
-    answer: Dancing
+    answer: DANCING
   - question: What is my name?
     wrongAnswerOne: Dave
     wrongAnswerTwo: Jaime
     wrongAnswerThree: Alex
-    answer: Jin
+    answer: JIN
   - question: Da Fuq?
-    wrongAnswerOne: YEET
-    wrongAnswerTwo: KOBE
-    wrongAnswerThree: F
-    answer: NO U!
+    wrongAnswerOne: Foo
+    wrongAnswerTwo: Fee
+    wrongAnswerThree: Fi
+    answer: FUQ
+  - question: Who
+    wrongAnswerOne: dead
+    wrongAnswerTwo: ass
+    wrongAnswerThree: not
+    answer: IT
+  - question: What
+    wrongAnswerOne: why
+    wrongAnswerTwo: where
+    wrongAnswerThree: when
+    answer: THIS
+  - question: Why
+    wrongAnswerOne: ht
+    wrongAnswerTwo: yt
+    wrongAnswerThree: at
+    answer: TA
