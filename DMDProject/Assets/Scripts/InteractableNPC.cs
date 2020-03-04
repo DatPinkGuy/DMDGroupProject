@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class InteractableNPC : MonoBehaviour
 {
     [SerializeField] GameObject dialogueUI;
-    private void OnTrigger2D(Collider2D collision)
+
+    private void OnMouseDown()
     {
-            dialogueUI.SetActive(true);
+        dialogueUI.SetActive(true);
     }
 }

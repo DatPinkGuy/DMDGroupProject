@@ -8,6 +8,7 @@ public class biomeUIWelcomeMessage : MonoBehaviour
 {
     [SerializeField] GameObject introUI;
     [SerializeField] string messageToSay;
+    [SerializeField] float messageTimer = 5f;
 
     private void Start()
     {
@@ -17,7 +18,9 @@ public class biomeUIWelcomeMessage : MonoBehaviour
     IEnumerator WelcomeMessage()
     {
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(messageTimer);
         introUI.SetActive(false);
+        //yield break;
+        StopCoroutine(WelcomeMessage());
     }
 }

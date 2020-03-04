@@ -19,7 +19,7 @@ public class biomePlayerController : MonoBehaviour
     }
     void Update()
     {
-        MovetoPos();
+        //MovetoPos(); //No longer moving player
     }
 
     void MovetoPos()
