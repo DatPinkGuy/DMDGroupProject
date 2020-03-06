@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject agent;
     [SerializeField] private List<GameObject> nodes;
     [SerializeField] private new Camera camera;
-    private NavMeshAgent Agent => agent.GetComponent<NavMeshAgent>(); 
+    private NavMeshAgent Agent => agent.GetComponent<NavMeshAgent>();
+    [SerializeField] private Animator animator;
     private LoadLevelInfo LevelInfo => _chosenNode.GetComponent<LoadLevelInfo>();
     private NavMeshHit _navMeshHit;
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Animating();
         CheckForNodes();
         CheckDistance();
     }
@@ -52,11 +54,36 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Wait());
     }
 
+    private void Animating()
+    {
+        if (!Agent.hasPath)
+        {
+            animator.Play("idle", 0);
+            return;
+        }
+        if ((Agent.velocity.x > 0) && Agent.velocity.z > Agent.velocity.x)
+        {
+            animator.Play("walk away", 0);
+        }
+        else if ((Agent.velocity.x < 0 || Agent.velocity.x > 0) && Agent.velocity.z < 0 &&  Agent.velocity.z < Agent.velocity.x)
+        {
+            animator.Play("walkforawrd", 0);
+        }
+        else if (Agent.velocity.x > 0 && Agent.velocity.z < Agent.velocity.x)
+        {
+            animator.Play("walk right", 0);
+        }
+        else
+        {
+            animator.Play("walklleft", 0);
+        }
+    }
+
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(1f);
         if (Agent.hasPath) yield break;
         yield return new WaitForSecondsRealtime(2);
-        SceneManager.LoadScene(LevelInfo.levelNumb);
+        if(!Agent.hasPath) SceneManager.LoadScene(LevelInfo.levelNumb);
     }
 }
