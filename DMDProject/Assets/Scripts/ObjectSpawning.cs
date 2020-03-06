@@ -42,9 +42,10 @@ public class ObjectSpawning : MonoBehaviour
         
         if (_oldSpawn.x <= launchable.transform.position.x)
         {
+            var vel = _launchingCamera.rb.velocity;
             _oldSpawn = launchable.transform.position;
-            _oldSpawn.x += 50;
-           for (int i = 0; i < objectSpawnAmount; i++)
+            _oldSpawn += vel;
+            for (int i = 0; i < objectSpawnAmount; i++)
             {
                 var collectible = Instantiate(spawnableList[Random.Range(0, spawnableList.Count)],
                     new Vector3(_oldSpawn.x + Random.Range(-20, 20), _oldSpawn.y + Random.Range(-20, 20), 0f),

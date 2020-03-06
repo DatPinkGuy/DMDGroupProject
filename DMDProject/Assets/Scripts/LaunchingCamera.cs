@@ -14,6 +14,7 @@ public class LaunchingCamera : MonoBehaviour
     private Vector3 _endPoint;
     private Vector3 _launchDirection;
     private Rigidbody Rb => animalLaunching.GetComponent<Rigidbody>();
+    public Rigidbody rb => Rb;
     [HideInInspector] public bool launched;
     private bool _gotDirection;
     [HideInInspector] public bool playState;
@@ -70,12 +71,10 @@ public class LaunchingCamera : MonoBehaviour
     {
         if (_oldPosition != AnimalPosition)
         {
-            var direction = AnimalPosition - _oldPosition;
-            float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
             Vector3 transformPosition = AnimalPosition;
             Rb.AddForce(0, -gravityModifier,0); 
             CameraFollow();
-            animalLaunching.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            animalLaunching.transform.Rotate(0,0,-180*Time.deltaTime);
             _oldPosition = AnimalPosition; 
             if (transformPosition.y < 0) playState = true;
             return transformPosition;
