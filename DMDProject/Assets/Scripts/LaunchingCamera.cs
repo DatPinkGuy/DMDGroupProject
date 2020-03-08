@@ -72,11 +72,11 @@ public class LaunchingCamera : MonoBehaviour
         if (_oldPosition != AnimalPosition)
         {
             Vector3 transformPosition = AnimalPosition;
-            Rb.AddForce(0, -gravityModifier,0); 
-            CameraFollow();
+            Rb.AddForce(0, -gravityModifier,0);
             animalLaunching.transform.Rotate(0,0,-180*Time.deltaTime);
             _oldPosition = AnimalPosition; 
             if (transformPosition.y < 0) playState = true;
+            CameraFollow();
             return transformPosition;
         }
         else
@@ -84,15 +84,17 @@ public class LaunchingCamera : MonoBehaviour
             _oldPosition = AnimalPosition;
             Vector3 transformPosition = AnimalPosition;
             Rb.AddForce(0, -gravityModifier,0);
-            CameraFollow();
             if (transformPosition.y < 0) playState = true;
+            CameraFollow();
             return transformPosition;
         }
     }
 
     private void CameraFollow()
     {
-        camera.transform.position = new Vector3(AnimalPosition.x, AnimalPosition.y, -5);; //needs z axis offset
+        var position = new Vector3(AnimalPosition.x, AnimalPosition.y, -5);
+        position.y = Mathf.Clamp(position.y, 1.5f, AnimalPosition.y);
+        camera.transform.position = position;
     }
 
     private void MiniGame()
