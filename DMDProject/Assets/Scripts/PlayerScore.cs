@@ -8,7 +8,10 @@ public class PlayerScore : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
     private int _score;
+    private static int _highScore;
     private LaunchingCamera _launchingCamera;
+    public int Score => _score;
+    public int HighScore => _highScore;
 
     private void Start()
     {
@@ -24,5 +27,6 @@ public class PlayerScore : MonoBehaviour
         var vel = _launchingCamera.rb.velocity;
         if(vel.y < 0) vel.y = -vel.y * 4;
         _launchingCamera.rb.AddForce(0,vel.y,0);
+        if (_score > _highScore) _highScore = _score;
     }
 }

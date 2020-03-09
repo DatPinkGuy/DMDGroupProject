@@ -11,7 +11,7 @@ public class BackgroundMovement : MonoBehaviour
         BackroundSky
     }
     public Background background;
-    public float textureSpeed;
+    [Tooltip("Bigger value makes background move slower")] public float textureSpeed;
     private Material Material => GetComponent<MeshRenderer>().material;
     private float yMin;
     private float lerpY = 12;

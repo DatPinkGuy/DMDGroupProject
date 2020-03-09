@@ -8,8 +8,14 @@ public class ObjectSpawning : MonoBehaviour
     [SerializeField] private List<GameObject> spawnableList;
     [HideInInspector] public List<GameObject> spawnedObjects;
     private LaunchingCamera _launchingCamera;
+    [Tooltip("Time after game start when objects start to spawn (in seconds)")]
     [SerializeField] private float neededTime;
+    [Tooltip("Amount of objects to spawn in each spawn cycle")]
     [SerializeField] private int objectSpawnAmount;
+    [Tooltip("Range of spawnable locations for objects (in x and y axis)")]
+    [SerializeField] private int spawnVariety;
+    [Tooltip("Distance that needs to be covered for new objects to spawn")]
+    [SerializeField] private int spawnDistance;
     private float _timer;
     private Vector3 _oldSpawn;
     private GameObject _list;
@@ -17,7 +23,7 @@ public class ObjectSpawning : MonoBehaviour
     void Start()
     {
         _launchingCamera = FindObjectOfType<LaunchingCamera>();
-        _list = new GameObject("Spawnable List");
+        _list = new GameObject("--Spawnable List--");
     }
 
     // Update is called once per frame
@@ -33,7 +39,7 @@ public class ObjectSpawning : MonoBehaviour
     {
         foreach (var collectible in spawnedObjects)
         {
-            if (collectible.transform.position.x < launchable.transform.position.x - 50)
+            if (collectible.transform.position.x < launchable.transform.position.x - spawnDistance)
             {
                 spawnedObjects.Remove(collectible);
                 Destroy(collectible);
@@ -48,7 +54,8 @@ public class ObjectSpawning : MonoBehaviour
             for (int i = 0; i < objectSpawnAmount; i++)
             {
                 var collectible = Instantiate(spawnableList[Random.Range(0, spawnableList.Count)],
-                    new Vector3(_oldSpawn.x + Random.Range(-20, 20), _oldSpawn.y + Random.Range(-20, 20), 0f),
+                    new Vector3(_oldSpawn.x + Random.Range(-spawnVariety, spawnVariety), 
+                        _oldSpawn.y + Random.Range(-spawnVariety, spawnVariety), 0f),
                     Quaternion.identity);
                 collectible.transform.SetParent(_list.transform, true);
                 spawnedObjects.Add(collectible);

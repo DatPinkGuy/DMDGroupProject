@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class LaunchingCamera : MonoBehaviour
 {
+    [Header("Modifiers")]
     public int forceModifier;
     public float gravityModifier;
+    [Tooltip("Max power of power meter, depending on size may need adjustments to speed")]
     public float maxPower;
     public float powerMeterSpeed;
     private float _launchPower;
@@ -20,6 +22,7 @@ public class LaunchingCamera : MonoBehaviour
     [HideInInspector] public bool playState;
     private Ray _ray;
     private RaycastHit _hit;
+    private PlayerScore playerScore;
     //Power bar bools for repeating the filling
     private bool _powerBarTop;
     private bool _powerBarBottom;
@@ -30,13 +33,22 @@ public class LaunchingCamera : MonoBehaviour
         get => animalLaunching.transform.position;
         set => animalLaunching.transform.position = value;
     }
+    [Header("Main Objects")]
     [SerializeField] private GameObject animalLaunching;
     [SerializeField] private new Camera camera;
+    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image powerBarImage;
+    [Header("Game Ending Objects")]
+    [SerializeField] private GameObject gameEndPanel;
+    [SerializeField] private Text score;
+    [SerializeField] private Text highScore;
     // Start is called before the first frame update
     void Start()
     {
         powerBarImage.enabled = false;
+        lineRenderer.enabled = false;
+        playerScore = FindObjectOfType<PlayerScore>();
+        gameEndPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,6 +57,9 @@ public class LaunchingCamera : MonoBehaviour
         if (playState)
         {
             Rb.isKinematic = true;
+            gameEndPanel.SetActive(true);
+            score.text = playerScore.Score.ToString();
+            highScore.text = playerScore.HighScore.ToString();
             return;
         }
         MiniGame();
@@ -103,13 +118,25 @@ public class LaunchingCamera : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                lineRenderer.enabled = true;
                 _ray = camera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(_ray, out _hit)) _startPoint = _hit.point;
+                lineRenderer.SetPosition(0, _hit.point);
+            }
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                _ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(_ray, out _hit))  lineRenderer.SetPosition(1, _hit.point);
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 _ray = camera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(_ray, out _hit)) _endPoint = _hit.point;
+                if (_startPoint == Vector3.zero || _endPoint == Vector3.zero)
+                {
+                    lineRenderer.enabled = false;
+                    return;
+                }
                 _launchDirection = GetDirection(_startPoint, _endPoint);
                 return;
             }
@@ -147,10 +174,13 @@ public class LaunchingCamera : MonoBehaviour
                         _powerBarTop = false;
                     }
                 }
-               
-                
             }
-            if (Input.GetKeyUp(KeyCode.Mouse0)) LaunchObject(_launchPower);
+            
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                LaunchObject(_launchPower);
+                lineRenderer.enabled = false;
+            }
         }
         if (launched)
         {
