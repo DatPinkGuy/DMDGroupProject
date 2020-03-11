@@ -39,7 +39,7 @@ public class LaunchingCamera : MonoBehaviour
     [SerializeField] private new Camera camera;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image powerBarImage;
-    [SerializeField] private Collider planeCollider;
+    [SerializeField] private Animator animator;
     [Header("Game Ending Objects")]
     [SerializeField] private GameObject gameEndPanel;
     [SerializeField] private Text score;
@@ -51,6 +51,7 @@ public class LaunchingCamera : MonoBehaviour
         lineRenderer.enabled = false;
         playerScore = FindObjectOfType<PlayerScore>();
         gameEndPanel.SetActive(false);
+        animator.Play("Instruction", 0);
     }
 
     // Update is called once per frame
@@ -72,6 +73,7 @@ public class LaunchingCamera : MonoBehaviour
         Rb.AddForce(power*forceModifier*_launchDirection);
         launched = true;
         powerBarImage.enabled = false;
+        animator.gameObject.SetActive(false);
     }
 
     private Vector3 GetDirection(Vector3 startPoint, Vector3 endPoint)
@@ -153,6 +155,9 @@ public class LaunchingCamera : MonoBehaviour
         }
         if (!launched && _gotDirection)
         {
+            var x = new Vector3(1.5f,-0.6f,0);
+            animator.transform.position = x;
+            animator.Play("Instruction2", 0);
             _ray = camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(_ray, out _hit))
             {
