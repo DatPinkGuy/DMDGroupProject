@@ -9,6 +9,7 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] private Text scoreText;
     private int _score;
     private static int _highScore;
+    private AudioSource _audioSource;
     private LaunchingCamera _launchingCamera;
     public int Score => _score;
     public int HighScore => _highScore;
@@ -16,11 +17,13 @@ public class PlayerScore : MonoBehaviour
     private void Start()
     {
         _launchingCamera = FindObjectOfType<LaunchingCamera>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.GetComponent<CollectablePoints>()) return;
+        _audioSource.Play();
         _score += other.GetComponent<CollectablePoints>().scoreAmount;
         scoreText.text = _score.ToString();
         other.gameObject.SetActive(false);
