@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectSpawning : MonoBehaviour
@@ -37,7 +38,7 @@ public class ObjectSpawning : MonoBehaviour
 
     void ObjectSpwan()
     {
-        foreach (var collectible in spawnedObjects)
+        foreach (var collectible in spawnedObjects.ToList())
         {
             if (collectible.transform.position.x < launchable.transform.position.x - spawnDistance)
             {
@@ -45,7 +46,7 @@ public class ObjectSpawning : MonoBehaviour
                 Destroy(collectible);
             }
         }
-        
+
         if (_oldSpawn.x <= launchable.transform.position.x)
         {
             var vel = _launchingCamera.rb.velocity;
