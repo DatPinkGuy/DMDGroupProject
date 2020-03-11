@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2403174296280711733}
   m_Layer: 0
   m_Name: Collectible3
-  m_TagString: Untagged
+  m_TagString: coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
