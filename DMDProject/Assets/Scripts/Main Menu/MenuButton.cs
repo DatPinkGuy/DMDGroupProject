@@ -43,7 +43,7 @@ public class MenuButton : MonoBehaviour
         if (animState == 1)
         {
             Timer();
-            if (timer >= 2)
+            if (timer >= 1.4f)
             {
                 cg1.alpha += 1.0f * Time.deltaTime;
             }
