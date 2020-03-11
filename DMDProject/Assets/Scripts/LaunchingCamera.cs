@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LaunchingCamera : MonoBehaviour
@@ -38,6 +39,7 @@ public class LaunchingCamera : MonoBehaviour
     [SerializeField] private new Camera camera;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image powerBarImage;
+    [SerializeField] private Collider planeCollider;
     [Header("Game Ending Objects")]
     [SerializeField] private GameObject gameEndPanel;
     [SerializeField] private Text score;
@@ -118,15 +120,23 @@ public class LaunchingCamera : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                lineRenderer.enabled = true;
                 _ray = camera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(_ray, out _hit)) _startPoint = _hit.point;
+                if (Physics.Raycast(_ray, out _hit))
+                {
+                    if (EventSystem.current.IsPointerOverGameObject()) return;
+                }
+                lineRenderer.enabled = true;
+                _startPoint = _hit.point;
                 lineRenderer.SetPosition(0, _hit.point);
             }
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 _ray = camera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(_ray, out _hit))  lineRenderer.SetPosition(1, _hit.point);
+                if (Physics.Raycast(_ray, out _hit))
+                {
+                    if (EventSystem.current.IsPointerOverGameObject()) return;
+                }
+                lineRenderer.SetPosition(1, _hit.point);
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
@@ -143,6 +153,11 @@ public class LaunchingCamera : MonoBehaviour
         }
         if (!launched && _gotDirection)
         {
+            _ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(_ray, out _hit))
+            {
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+            }
             if (Input.GetKeyDown(KeyCode.Mouse0)) _launchPower = 0;
             if (Input.GetKey(KeyCode.Mouse0))
             {
